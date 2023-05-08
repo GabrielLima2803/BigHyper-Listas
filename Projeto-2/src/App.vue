@@ -1,5 +1,8 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref,  } from 'vue'
+
+// Computed
+
 const produtos = ref([
   {
     id: 1,
@@ -128,11 +131,7 @@ carrinho.value.total = 0
 
 // computed mudar cor
 
-const mudarCor = computed(() => {
-    return 
-}
 
-)
 
 
 </script>
@@ -141,14 +140,15 @@ const mudarCor = computed(() => {
   <div class="container">
     <!-- Button modal -->
     <button type="button" class="btn btn-primary p-3 mt-2 " data-bs-toggle="modal" data-bs-target="#exampleModal">
-      Carrinho
+      🛒 Ver Carrinho
     </button>
+    <hr>
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Carrinho</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
@@ -175,9 +175,9 @@ const mudarCor = computed(() => {
           <h6>Preço: {{ produto.preco }}</h6>
           <h6>Quantidade: {{ produto.quantidade }}</h6>
 
-          <button type="button" @click="menos(index)" class="btn bg-white p-1 h-r">-</button>
-          <button type="button" @click="mais(index)" class="btn bg-white p-1 ml-b h-g">+</button>
-          <button type="button" @click="adicionarCarrinho(produto)" class="btn bg-white p-1 ml-b h-g">Adicionar</button>
+          <button type="button" @click="menos(index)" class="btn bg-white p-1 h-r btnW">-</button>
+          <button type="button" @click="mais(index)" class="btn bg-white p-1 ml-b h-g btnW">+</button>
+          <button type="button" @click="adicionarCarrinho(produto)" class="btn bg-white p-1 ml-b h-g">☑️ Adicionar</button>
         </div>
       </div>
       <!-- FIM DIV FOR-V -->
@@ -217,5 +217,8 @@ const mudarCor = computed(() => {
 .h-r:hover {
   transition: 0.5s;
   color: rgb(255, 0, 0);
+}
+.btnW{
+  width: 30px;
 }
 </style>
