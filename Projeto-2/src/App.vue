@@ -1,5 +1,5 @@
 <script setup>
-import { ref,  } from 'vue'
+import { ref, computed  } from 'vue'
 
 // Computed
 
@@ -110,10 +110,11 @@ function mais(index) {
 }
 
 function menos(index) {
+
+if (produtos.value[index].quantidade > 0) {
   produtos.value[index].quantidade--
-  const pos = carrinho.value.items.indexOf(carrinho.value.items.find(c => c.id === produtos.value[index].id))
-
-
+}
+const pos = carrinho.value.items.indexOf(carrinho.value.items.find(c => c.id === produtos.value[index].id))
   if (pos != +1) {
     carrinho.value.total -= carrinho.value.items[pos].total
     carrinho.value.items[pos].total = --carrinho.value.items[pos].quantidade * carrinho.value.items[pos].preco
@@ -138,6 +139,14 @@ carrinho.value.total = 0
 
 <template>
   <div class="container">
+
+    <header>
+      <div class="header-1">
+        <h1>BigHyper</h1>
+      </div>
+    </header>
+
+
     <!-- Button modal -->
     <button type="button" class="btn btn-primary p-3 mt-2 " data-bs-toggle="modal" data-bs-target="#exampleModal">
       🛒 Ver Carrinho
@@ -152,8 +161,14 @@ carrinho.value.total = 0
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <p>{{ carrinho }}</p>
-            <p>{{ valorTotal }}</p>
+            <div v-for="(itemDoCarrinho, index) in carrinho.items" :key="itemDoCarrinho.id">
+            <strong> {{ itemDoCarrinho.id }} - {{ itemDoCarrinho.nome }}</strong>
+            <br>
+            <p>Preço R$ {{itemDoCarrinho.preco }} | Quant {{ itemDoCarrinho.quantidade}} (Total: {{ itemDoCarrinho.total }} )</p>
+
+          </div>
+          <p v-if="carrinho.length > 0">Valor total da compra: R$ {{ carrinho.total }}</p>
+          <p v-else>Nenhum item no carrinho</p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
