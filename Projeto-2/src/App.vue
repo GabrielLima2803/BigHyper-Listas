@@ -141,8 +141,9 @@ carrinho.value.total = 0
   <div class="container">
 
     <header>
-      <div class="header-1">
+      <div>
         <h1>BigHyper</h1>
+        <br>
       </div>
     </header>
 
@@ -168,7 +169,7 @@ carrinho.value.total = 0
 
           </div>
           <p v-if="carrinho.length > 0">Valor total da compra: R$ {{ carrinho.total }}</p>
-          <p v-else>Nenhum item no carrinho</p>
+          <p v-else></p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
